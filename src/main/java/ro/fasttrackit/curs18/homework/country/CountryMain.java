@@ -13,7 +13,7 @@ public class CountryMain {
         System.out.println(countryService.getCountryPopulation("Romania"));
         System.out.println(countryService.getCountriesContinent("Asia"));
         System.out.println(countryService.getCountriesNeighbour("Romania"));
-        System.out.println(countryService.getCountriesPopulationLargerMin("Europe"));
+        System.out.println(countryService.getCountriesPopulationLargerMin("Europe",20000000,100000000));
         System.out.println(countryService.getCountriesCheckNeighbour("ITA","DEU"));
     }
 }

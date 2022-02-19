@@ -22,11 +22,11 @@ public class CountryService {
                 .collect(Collectors.toList());
     }
 
-    public String getCountryCapital(String tara) {
+    public Optional<String> getCountryCapital(String tara) {
         return countries.stream()
                 .filter(country -> country.getName().equalsIgnoreCase(tara))
                 .map(Country::getCapital)
-                .collect(Collectors.joining());
+                .findFirst();
     }
 
     public Optional<Long> getCountryPopulation(String tara) {
@@ -39,23 +39,22 @@ public class CountryService {
     public List<Country> getCountriesContinent(String conti){
         return countries.stream()
                 .filter(continent -> continent.getContinent().equalsIgnoreCase(conti))
-                .sorted(Comparator.comparing(Country::getContinent))
                 .collect(Collectors.toList());
     }
 
-    public List<List<String>> getCountriesNeighbour(String tara){
+    public Optional<List<String>> getCountriesNeighbour(String tara){
         return countries.stream()
                 .filter(country -> country.getName().equalsIgnoreCase(tara))
                 .map(Country::getNeighbour)
-                .collect(Collectors.toList());
+                .findFirst();
     }
 
-    public List<Country> getCountriesPopulationLargerMin(String conti){
+    public List<Country> getCountriesPopulationLargerMin(String conti, int minpop, int maxpop){
         return countries.stream()
                 .filter(country -> country.getContinent().equalsIgnoreCase(conti))
                 .sorted(Comparator.comparing(Country::getContinent))
-                .filter(country -> country.getPopulation() > 20000000)
-                .filter(country -> country.getPopulation() < 100000000)
+                .filter(country -> country.getPopulation() > minpop)
+                .filter(country -> country.getPopulation() < maxpop)
                 .collect(Collectors.toList());
     }
 

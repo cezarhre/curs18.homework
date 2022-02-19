@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 @Component
 public class CountryReader {
 
-    public CountryReader(){
+    public CountryReader() {
     }
 
     public List<Country> getCountries() {
