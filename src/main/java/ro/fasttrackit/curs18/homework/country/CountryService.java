@@ -22,39 +22,39 @@ public class CountryService {
                 .collect(Collectors.toList());
     }
 
-    public Optional<String> getCountryCapital(String tara) {
+    public Optional<String> getCountryCapital(int countryId) {
         return countries.stream()
-                .filter(country -> country.getName().equalsIgnoreCase(tara))
+                .filter(country -> country.getId() == countryId)
                 .map(Country::getCapital)
                 .findFirst();
     }
 
-    public Optional<Long> getCountryPopulation(String tara) {
+    public Optional<Long> getCountryPopulation(int countryId) {
         return countries.stream()
-                .filter(country -> country.getName().equalsIgnoreCase(tara))
+                .filter(country -> country.getId() == countryId)
                 .map(Country::getPopulation)
                 .findFirst();
     }
 
-    public List<Country> getCountriesContinent(String conti){
+    public List<Country> getCountriesContinent(String continentName){
         return countries.stream()
-                .filter(continent -> continent.getContinent().equalsIgnoreCase(conti))
+                .filter(continent -> continent.getContinent().equalsIgnoreCase(continentName))
                 .collect(Collectors.toList());
     }
 
-    public Optional<List<String>> getCountriesNeighbour(String tara){
+    public Optional<List<String>> getCountriesNeighbour(int countryId){
         return countries.stream()
-                .filter(country -> country.getName().equalsIgnoreCase(tara))
+                .filter(country -> country.getId() == countryId)
                 .map(Country::getNeighbour)
                 .findFirst();
     }
 
-    public List<Country> getCountriesPopulationLargerMin(String conti, int minpop, int maxpop){
+    public List<Country> getCountriesPopulationLargerMin(String continentName, int minPop, int maxPop){
         return countries.stream()
-                .filter(country -> country.getContinent().equalsIgnoreCase(conti))
+                .filter(country -> country.getContinent().equalsIgnoreCase(continentName))
                 .sorted(Comparator.comparing(Country::getContinent))
-                .filter(country -> country.getPopulation() > minpop)
-                .filter(country -> country.getPopulation() < maxpop)
+                .filter(country -> country.getPopulation() > minPop)
+                .filter(country -> country.getPopulation() < maxPop)
                 .collect(Collectors.toList());
     }
 
