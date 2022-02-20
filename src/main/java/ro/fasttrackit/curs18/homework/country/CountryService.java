@@ -57,10 +57,10 @@ public class CountryService {
                 .collect(Collectors.toList());
     }
 
-    public List<Country> getCountriesCheckNeighbour(String tara1, String tara2){
+    public List<Country> getCountriesCheckNeighbour(String includeNeighbour, String excludeNeighbour){
         return countries.stream()
-                .filter(country -> country.getNeighbour().contains(tara1))
-                .filter(country -> !country.getNeighbour().contains(tara2))
+                .filter(country -> country.getNeighbour().contains(includeNeighbour))
+                .filter(country -> !country.getNeighbour().contains(excludeNeighbour))
                 .collect(Collectors.toList());
     }
 

@@ -1,9 +1,7 @@
 package ro.fasttrackit.curs18.homework.country;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -53,9 +51,9 @@ public class CountryController {
         return countryService.getCountriesPopulationLargerMin(continentName,minPop);
     }
 
-    @GetMapping("/countries?includeNeighbour={includedNeighbourCode}&excludeNeighbour={excludedNeighbourCode}")
-    public List<Country> getCountriesCheckNeighbour(@PathVariable String tara1,
-                                                    @PathVariable String tara2){
-        return countryService.getCountriesCheckNeighbour(tara1,tara2);
+    @GetMapping(value = "countries", params = {"includeNeighbour", "excludeNeighbour"})
+    public List<Country> getCountriesCheckNeighbour(@RequestParam String includeNeighbour,
+                                                    @RequestParam String excludeNeighbour){
+        return countryService.getCountriesCheckNeighbour(includeNeighbour,excludeNeighbour);
     }
 }
