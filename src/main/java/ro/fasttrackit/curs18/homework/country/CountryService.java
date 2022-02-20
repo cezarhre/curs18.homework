@@ -49,12 +49,11 @@ public class CountryService {
                 .findFirst();
     }
 
-    public List<Country> getCountriesPopulationLargerMin(String continentName, int minPop, int maxPop){
+    public List<Country> getCountriesPopulationLargerMin(String continentName, int minPop){
         return countries.stream()
                 .filter(country -> country.getContinent().equalsIgnoreCase(continentName))
                 .sorted(Comparator.comparing(Country::getContinent))
                 .filter(country -> country.getPopulation() > minPop)
-                .filter(country -> country.getPopulation() < maxPop)
                 .collect(Collectors.toList());
     }
 

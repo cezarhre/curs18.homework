@@ -49,9 +49,8 @@ public class CountryController {
 
     @GetMapping("/continents/{continentName}/countries?minPopulation=<minimum population>")
     public List<Country> getCountriesPopulationLargerMin(@PathVariable String continentName,
-                                                         @PathVariable int minPop,
-                                                         @PathVariable int maxPop){
-        return countryService.getCountriesPopulationLargerMin(continentName,minPop,maxPop);
+                                                         @PathVariable int minPop){
+        return countryService.getCountriesPopulationLargerMin(continentName,minPop);
     }
 
     @GetMapping("/countries?includeNeighbour={includedNeighbourCode}&excludeNeighbour={excludedNeighbourCode}")
